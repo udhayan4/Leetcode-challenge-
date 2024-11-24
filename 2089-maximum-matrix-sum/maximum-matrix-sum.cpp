@@ -1,23 +1,22 @@
 class Solution {
 public:
     long long maxMatrixSum(vector<vector<int>>& matrix) {
-        ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-        int nc = 0;
-        int m = INT_MAX;
+        int minValue = INT_MAX;
         long long sum = 0;
-        for(auto a: matrix){
-            for(auto b: a){
-                if(b < 0){
-                    nc++;
-                }
-                m = min(m, abs(b));
-                sum += abs(b);
+        int negCount = 0;
+
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix[0].size(); j++) {
+                if (matrix[i][j] < 0)
+                    negCount++;
+                int absValue = abs(matrix[i][j]);
+                minValue = min(minValue, absValue);
+                sum += absValue;
             }
         }
-        if(m == 0) return sum;
-        if(nc & 1){
-            sum -= (2*m);
-        }
-        return sum;
+
+        if (negCount % 2 == 0)
+            return sum;
+        return sum - 2 * minValue;
     }
 };
