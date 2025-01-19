@@ -47,6 +47,6 @@ public:
             }
         }
 
-        return waterTrapped; // \U0001f3c6 Final result
+        return waterTrapped; // 
     }
 };
