@@ -1,4 +1,4 @@
-class Solution {
+ class Solution {
     private:
         bool solve(int n, vector<int>& quantities, int item)
         {
