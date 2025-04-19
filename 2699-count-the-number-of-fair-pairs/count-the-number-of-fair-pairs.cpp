@@ -1,14 +1,20 @@
 class Solution {
 public:
-    long long countFairPairs(vector<int>& v, int lower, int upper) {
-        long long ans = 0;
-        sort(v.begin(), v.end());
+    long long countFairPairs(vector<int>& nums, int lower, int upper) {
+        // Sort the array to enable binary search
+        sort(nums.begin(), nums.end());
+        long long count = 0;
 
-        for (int i = 0; i < v.size() - 1; i++) {
-            auto up = upper_bound(v.begin() + i + 1, v.end(), upper - v[i]);
-            auto low = lower_bound(v.begin() + i + 1, v.end(), lower - v[i]);
-            ans += (up - low);
+        // Check for each nums[i] how many nums[j] (j > i) give a fair pair
+        for (int i = 0; i < nums.size(); i++) {
+            // Use binary search to find bounds
+            auto left = lower_bound(nums.begin() + i + 1, nums.end(), lower - nums[i]);
+            auto right = upper_bound(nums.begin() + i + 1, nums.end(), upper - nums[i]);
+
+            // Count number of valid j values
+            count += right - left;
         }
-        return ans;
+
+        return count;
     }
 };
