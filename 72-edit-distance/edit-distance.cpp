@@ -1,7 +1,7 @@
 class Solution {
 public:
     int solveRE(string &word1, string &word2, int i, int j) {
-        // base case
+        
         if (i == word1.size())
             return word2.size() - j;
         if (j == word2.size())
@@ -86,10 +86,7 @@ public:
     }
 
     int minDistance(string word1, string word2) {
-        // return solveRE(word1, word2, 0, 0);
-        // vector<vector<int>>dp(word1.size()+1,vector<int>(word2.size()+1,-1));
-        // return solveTD(word1, word2, 0, 0,dp);
-        // return solveBU(word1,word2);
+        
         return solveSO(word1,word2);
     }
 };
